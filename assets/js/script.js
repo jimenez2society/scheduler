@@ -1,9 +1,15 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 
-const { timeBlock } = Scheduler;
 // in the html.
+
 $(function () {
+  let el = div("create");
+  let elW = el.class("james");
+  let timeBockContainer = flankQuery("#time-block-container");
+  // timeBockContainer.append(el);
+  // timeBockContainer.appendChild(el);
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
