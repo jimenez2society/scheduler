@@ -1,8 +1,40 @@
-// create a class that handles the function of the scheduler
+import { hours } from "./Date.js";
 
-class Scheduler {
-  // create a proxy method that renders the timeBlock with its respective time whether it be 'past', 'present', or 'future'
+export class Scheduler {
+  static timeBlock(time, position) {
+    let timeBlockEl = $("#time-block-container");
+    let date = new Date();
+    let presentTime = hours[date.getHours()];
+    let timeBlockProxy = new Proxy(
+      {},
+      {
+        get: (obj, prop, reciever) => {
+          const render = () => {
+            let el = $(`<div id="hour-${time}" class="row time-block ${
+              hours[position] === presentTime
+                ? "present"
+                : position < date.getHours()
+                ? "past"
+                : "future"
+            }">
+              <div class="col-2 col-md-1 hour text-center py-3">${time}</div>
+              <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+              <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+                <i class="fas fa-save" aria-hidden="true"></i>
+              </button>
+            </div>`);
+            timeBlockEl.append(el);
+          };
+          if (prop === "render") {
+            obj[prop] = () => {
+              render();
+            };
+          }
 
-  
-  //   create a proxy method that gets the value of the timeBlock by its id and saves the value to the localStorage
+          return Reflect.get(obj, prop);
+        },
+      }
+    );
+    return timeBlockProxy;
+  }
 }

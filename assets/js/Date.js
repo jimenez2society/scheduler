@@ -13,6 +13,7 @@ export const hours = {
   8: "8AM",
   9: "9AM",
   10: "10AM",
+  11: "11AM",
   12: "12PM",
   13: "1PM",
   14: "2PM",
@@ -70,3 +71,14 @@ export const currentDate = `${dayOfWeek}, ${month} ${day}${
     ? "rd"
     : "th"
 }`;
+export const workHours = [
+  "9AM",
+  "10AM",
+  "11AM",
+  "12PM",
+  "1PM",
+  "2PM",
+  "3PM",
+  "4PM",
+  "5PM",
+];

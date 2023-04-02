@@ -1,14 +1,17 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 
+import { currentDate, hours, workHours } from "./Date.js";
+import { Scheduler } from "./Scheduler.js";
+const { timeBlock } = Scheduler;
 // in the html.
 
 $(function () {
-  let el = div("create");
-  let elW = el.class("james");
-  let timeBockContainer = flankQuery("#time-block-container");
-  // timeBockContainer.append(el);
-  // timeBockContainer.appendChild(el);
+  $("#currentDay").text(currentDate);
+  for (let key in hours) {
+    if (key >= 9 && key <= 17) timeBlock(hours[key], key).render();
+  }
+  // hours.map((time, i) => timeBlock(time, i).render());
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
