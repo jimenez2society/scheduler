@@ -4,11 +4,14 @@ export class Scheduler {
   static timeBlock(time, position = null) {
     let timeBlockEl = $("#time-block-container");
     let date = new Date();
+    // gets the current time
     let presentTime = hours[date.getHours()];
+    // creating a proxy
     let timeBlockProxy = new Proxy(
       {},
       {
         get: (obj, prop, reciever) => {
+          // creating a element that we can render with dynamic data
           let el = $(`<div id="hour-${time}" class="row time-block ${
             hours[position] === presentTime
               ? "present"
@@ -22,9 +25,11 @@ export class Scheduler {
                 <i class="fas fa-save" aria-hidden="true"></i>
               </button>
             </div>`);
+          // creates a function to render el
           const render = () => {
             timeBlockEl.append(el);
           };
+          // if there is a prop "render" then we will call render()
           if (prop === "render") {
             obj[prop] = () => {
               render();

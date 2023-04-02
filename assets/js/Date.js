@@ -1,5 +1,3 @@
-// create the days of the week
-// create the months
 //  create the times in the form of '1AM'
 export const hours = {
   0: "12AM",
@@ -27,7 +25,7 @@ export const hours = {
   22: "10PM",
   23: "11PM",
 };
-
+// create the days of the week
 let daysOfWeek = [
   "Sunday",
   "Monday",
@@ -37,6 +35,7 @@ let daysOfWeek = [
   "Friday",
   "Saturday",
 ];
+// create the months
 let months = [
   "Janurary",
   "Feburary",
@@ -53,7 +52,9 @@ let months = [
 ];
 let date = new Date();
 let day = date.getDate();
+// gets the current month in word form
 let month = months[date.getMonth()];
+// gets the current day in word form
 let dayOfWeek = daysOfWeek[date.getDay()];
 export const currentDate = `${dayOfWeek}, ${month} ${day}${
   // handles the ordinal numbers
@@ -71,6 +72,7 @@ export const currentDate = `${dayOfWeek}, ${month} ${day}${
     ? "rd"
     : "th"
 }`;
+// create the hours that we will only want to render
 export const workHours = [
   "9AM",
   "10AM",
