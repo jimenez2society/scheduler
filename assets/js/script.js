@@ -7,28 +7,34 @@ const { timeBlock } = Scheduler;
 // in the html.
 
 $(function () {
+  // gets and adds the current date to the #currentDay element
   $("#currentDay").text(currentDate);
+  // loops through the hours object and uses the timeBlock method on the Scheduler class to render each element
   for (let key in hours) {
-    if (key >= 9 && key <= 17) timeBlock(hours[key], key).render();
+    // limits the times from 9AM to 5PM
+    if (key >= 9 && key <= 17) {
+      timeBlock(hours[key], key).render();
+    }
   }
-  // hours.map((time, i) => timeBlock(time, i).render());
-
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  // gets the data from localStorage and maps though the array and uses the id to get the correct element to set the text
+  let data = JSON.parse(localStorage.getItem("timeBlockData"));
+  data.map((d) => {
+    let item = $(`#${d.id}`).children()[1];
+    item.textContent = d.description;
+  });
+  // gets the save button
+  let btn = $(".saveBtn");
+  // on click it checks if there is data in the localStorage. If not, we create an array with a single timeBlockObj item. if there is data, we append it to the array and reset the localStorage
+  btn.click((e) => {
+    let timeBlockel = $(`#${e.target.parentNode.id}`);
+    let text = timeBlockel.children()[1].value;
+    let timeBlockObj = { id: e.target.parentNode.id, description: text };
+    let data = JSON.parse(localStorage.getItem("timeBlockData"));
+    if (!data) {
+      localStorage.setItem("timeBlockData", JSON.stringify([timeBlockObj]));
+    } else {
+      data.push(timeBlockObj);
+      localStorage.setItem("timeBlockData", JSON.stringify(data));
+    }
+  });
 });
