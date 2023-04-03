@@ -1,4 +1,4 @@
-import { hours } from "./Date.js";
+import { hours } from "./date.js";
 
 export class Scheduler {
   static timeBlock(time, position = null) {

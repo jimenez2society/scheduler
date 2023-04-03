@@ -1,7 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 
-import { currentDate, hours, workHours } from "./Date.js";
+import { currentDate, hours, workHours } from "./date.js";
 import { Scheduler } from "./Scheduler.js";
 const { timeBlock } = Scheduler;
 // in the html.
