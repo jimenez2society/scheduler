@@ -23,3 +23,5 @@ The `script.js` puts all the logic together to set the current date at the top, 
 ### The look fo the app
 
 ![screenshot of app](./assets/img/screenshot.png)
+
+Click [here](https://642f926f0145df59ba5ba022--scheduler4work.netlify.app) for live demo
