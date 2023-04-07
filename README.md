@@ -19,3 +19,7 @@ The `Scheduler.js` contains a class that has a static method `timeBlock`. It cre
 ### script.js
 
 The `script.js` puts all the logic together to set the current date at the top, render the necessary time blocks and save the events to the time blocks via localStorage
+
+### The look fo the app
+
+![screenshot of app](./assets/img/screenshot.png)
