@@ -18,7 +18,7 @@ $(function () {
   }
   // gets the data from localStorage and maps though the array and uses the id to get the correct element to set the text
   let data = JSON.parse(localStorage.getItem("timeBlockData"));
-  data.map((d) => {
+  data?.map((d) => {
     let item = $(`#${d.id}`).children()[1];
     item.textContent = d.description;
   });
